@@ -41,14 +41,14 @@ public class WeighingStation extends Station {
 			EventQueue.getInstance().remove(e);
 			if (truck.getLoadedWeight() > 40) {
 				System.out.println("Weighingstation: overweight");
-				
+				GravelShipping.toShip += truck.getLoadedWeight(); // Truck lädt Gravel wieder auf den großen Haufen
 				timeToReload = backToLoadingStation.nextValue();
 				EventQueue.getInstance().add(new Event(timeStep + timeToReload ,
 						EventType.loadingReady, truck, this, LoadingStation.class));
 			} else {
 				System.out.println("Weighingstation: correct weight");
 				GravelShipping.shipped += truck.getLoadedWeight();
-				GravelShipping.toShip -= truck.getLoadedWeight();
+				//GravelShipping.toShip -= truck.getLoadedWeight(); an richtiger Stelle in LoadingStation platziert
 				
 				System.out.println("Gravel shipped: " + GravelShipping.shipped);
 				

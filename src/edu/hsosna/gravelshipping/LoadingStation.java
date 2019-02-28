@@ -64,9 +64,8 @@ public class LoadingStation extends Station {
 						if(x > GravelShipping.toShip) {
 							x = GravelShipping.toShip;
 						}
-						
-						truck.setLoadedWeight(x);
-
+						GravelShipping.toShip -= x; //Die Ladung wird vom Lager entfernt
+						truck.setLoadedWeight(x); // Der Truck erhält die Ladung
 						EventQueue.getInstance().add(new Event(timeStep + loadingTimes.nextValue(),
 								EventType.loadingDone, truck, this, LoadingStation.class));
 					}
